@@ -32,16 +32,9 @@ param parnicwin2019name string = 'bons30${uniqueString(resourceGroup().id)}'
 param parpublicip string
 param parsubnet1id string
 
-var vartagwin2019vm = {
-  owner: 'Jeroen Bonsel'
-  Department: 'Thuis'
-}
-
 resource resvmwindows2019 'Microsoft.Compute/virtualMachines@2021-11-01' = {
   name: parvmwindows2019name
   location: parlocation
-  tags: vartagwin2019vm
-
   properties: {
     hardwareProfile:{
       vmSize:parvm2019hwprofile

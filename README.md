@@ -1,20 +1,30 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+This project creates several resources:
+1. A virtual network with two subnets:
+1a. Subnet1 
+1b. Subnet2 
+2. A Virtual Machine (server 2019) with a public IP and a private IP in subnet1
+3. A NSG linked to subnet both subnets. A pieline variable will ask for your interet ip address. This variable is used to allow your internet ip adress to allow RDP into the vm.
+4. A WebApp:
+4a. A private link for the WebApp, private link is in subnet2
+4b. The WebApp downloads a "hello world" image from another github location (https://github.com/Azure-Samples/nodejs-docs-hello-world)
+5. A private DNS zone for the web app private link (privatelink.azurewebsites.net)
+
+The webapp is not reachable from the internet, but can be reached from the vm.
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+1. Register the yaml pipeline in your own tenant.
+2. Run the pipeline
+3. Select a location (either north or west europe)
+4. Lookup your internet ip adddress (via whatismyip.com) and enter it in the inputfield using x.x.x.x/32
+5. When finished a vm with a webapp should now exist. 
+
 
 # Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+1. The webapp is unreachable from the internet, but is reachable from the vm.
+2. RDP into the VM.
+3. Browse to the webapp from the vm (should work, can tkae a few minutes before the webapp is available).
+4. Browse to the vm from your own device (should not work)
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Please feel free to download the project and run it yourself
