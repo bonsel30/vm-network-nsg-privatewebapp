@@ -1,0 +1,46 @@
+trigger: none
+
+name: Deploy base infrastructure
+
+parameters:
+  - name: "region"
+    displayName: "Region"
+    type: string
+    default: westeurope
+    values:
+      - westeurope
+      - northeurope
+  - name: "vmadmin"
+    displayName: "admin account for server"
+    type: string
+  - name: "vmpassword"
+    displayName: "Password for server"
+    type: string
+  - name: "whatismyip"
+    displayName: "What is my ip, in format x.x.x.x/32"
+    type: string
+
+variables:
+  vmImageName: 'ubuntu-latest'
+  azureServiceConnection: 'spn-connection'
+  templateFile: '$(Pipeline.Workspace)/s/templates/main.bicep'
+
+pool:
+  vmImage: $(vmImageName)
+
+steps:
+- task: AzureCLI@2
+  retryCountOnTaskFailure: 3
+  inputs:
+    azureSubscription: $(azureServiceConnection)
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      az --version
+      deploymentName='ExampleDeployment'$RANDOM
+      az deployment sub create --template-file $(templateFile) --location ${{parameters.region}} \
+      --name $deploymentName \
+      --parameters parLocation=${{parameters.region}} \
+      --parameters parserver2019password=${{parameters.vmpassword}} \
+      --parameters parserver2019adminname=${{parameters.vmadmin}} \
+      --parameters parwhatismyip=${{parameters.whatismyip}} 
