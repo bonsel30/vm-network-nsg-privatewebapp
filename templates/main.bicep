@@ -1,3 +1,5 @@
+//Targetscope is subscription, we are creating resourcegroups here.
+//After creating resource groups, we are calling modules to create resources.
 targetScope = 'subscription'
 
 
