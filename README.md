@@ -1,8 +1,6 @@
 # Introduction 
 This project creates several resources:
-1. A virtual network with two subnets:
-1a. Subnet1 
-1b. Subnet2 
+1. A virtual network with two subnets: Subnet1 and Subnet2 
 2. A Virtual Machine (server 2019) with a public IP and a private IP in subnet1
 3. A NSG linked to subnet both subnets. A pieline variable will ask for your interet ip address. This variable is used to allow your internet ip adress to allow RDP into the vm.
 4. A WebApp:
